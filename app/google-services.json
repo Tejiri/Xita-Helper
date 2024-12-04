@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "226899547560",
+    "project_id": "daily-helper-ee644",
+    "storage_bucket": "daily-helper-ee644.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226899547560:android:a67976d6f21c1c2718f99d",
+        "android_client_info": {
+          "package_name": "com.example.learn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "226899547560-9l73r2jq1ktlpo644ku40a1btbge5qgh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.learn",
+            "certificate_hash": "a8e704a86a76b2b9dbc7fab0d3c41f3663db651d"
+          }
+        },
+        {
+          "client_id": "226899547560-2mktv28nul94av31ukc8jvqa63fjenib.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFWDisEWEhxLjImPJ16OZQ4d9LfdNuKy0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "226899547560-2mktv28nul94av31ukc8jvqa63fjenib.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226899547560:android:dd7b4c75f5233bae18f99d",
+        "android_client_info": {
+          "package_name": "com.xita.dailyhelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "226899547560-2mktv28nul94av31ukc8jvqa63fjenib.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFWDisEWEhxLjImPJ16OZQ4d9LfdNuKy0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "226899547560-2mktv28nul94av31ukc8jvqa63fjenib.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
