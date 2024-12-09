@@ -45,7 +45,6 @@ fun LoginPage(
     }
     FixedPages().BasePage {
 
-
         LazyColumn(
             Modifier
                 .fillMaxHeight()
@@ -83,7 +82,7 @@ fun LoginPage(
                     text = "Register",
                     transparent = true,
                     onClick = {
-                        navController.navigate("signup")
+                        navController.navigate("signUp")
                     })
 
 

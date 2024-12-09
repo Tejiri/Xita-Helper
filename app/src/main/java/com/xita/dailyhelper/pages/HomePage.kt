@@ -17,11 +17,13 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -34,6 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -41,6 +44,7 @@ import androidx.navigation.NavController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.bumptech.glide.integration.compose.placeholder
+import com.example.learn.customComponents.FixedPages
 import com.xita.dailyhelper.R
 import com.xita.dailyhelper.constants.Constants
 import com.xita.dailyhelper.models.Category
@@ -58,114 +62,126 @@ fun HomePage(
     homePageViewModel: HomePageViewModel = viewModel()
 ) {
 
-    var searchText by remember { mutableStateOf("") }
 
-    Column(
-        Modifier
-            .padding(innerPadding)
-            .padding(start = 20.dp, end = 20.dp, top = 20.dp)
-    ) {
+    FixedPages().PageWithAppBarAndDrawer(navController) {
+        var searchText by remember { mutableStateOf("") }
 
-        Box(
-            Modifier
-                .padding(bottom = 10.dp)
-                .clip(RoundedCornerShape(30))
-                .background(SearchBoxGrey)
-                .padding(10.dp)
-                .fillMaxWidth()
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
+        Box( ) {
+            Column(
+                Modifier
+
+                    .padding(start = 20.dp, end = 20.dp, top = 20.dp)
             ) {
-                Icon(Icons.Default.Search, "", Modifier.padding(end = 10.dp))
+
+                Box(
+                    Modifier
+                        .padding(bottom = 10.dp)
+                        .clip(RoundedCornerShape(30))
+                        .background(SearchBoxGrey)
+                        .padding(10.dp)
+                        .fillMaxWidth()
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Icon(Icons.Default.Search, "", Modifier.padding(end = 10.dp))
 
 
-                BasicTextField(
+                        BasicTextField(
 
-                    searchText, { value -> searchText = value }, Modifier.weight(1f)
-                )
-
-            }
-        }
-
-        Box(
-            Modifier
-                .fillMaxSize()
-                .weight(1f)
-        ) {
-            if (homePageViewModel.isLoading) {
-                CircularProgressIndicator(
-                    color = Color.Red,
-                    strokeWidth = 3.dp,
-                    modifier = Modifier.align(Alignment.Center)
-                )
-
-            } else {
-
-                LazyColumn {
-
-                    items(1){
+                            searchText, { value -> searchText = value }, Modifier.weight(1f)
+                        )
 
                     }
+                }
 
-                    items(homePageViewModel.categoriesResponse){category ->
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(5.dp)
-                        ) {
-                            Column {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
+                Box(
+                    Modifier
+                        .fillMaxSize()
+                        .weight(1f)
+                ) {
+                    if (homePageViewModel.isLoading) {
+                        CircularProgressIndicator(
+                            color = Color.Red,
+                            strokeWidth = 3.dp,
+                            modifier = Modifier.align(Alignment.Center)
+                        )
 
-                                    Box(Modifier.weight(0.2f)) {
-                                        GlideImage(
-                                            model = category.strCategoryThumb,
-                                            contentDescription = "",
-                                            loading = placeholder(
-                                                R.drawable.ic_launcher_background
-                                            ),
-                                            modifier = Modifier.align(Alignment.Center)
-                                        )
-                                    }
+                    } else {
 
-                                    Column(Modifier.weight(0.8f)) {
-                                        Text(
-                                            category.strCategory,
-                                            style = Constants.Texts.TITLE_TEXT
-                                        )
+                        LazyColumn {
 
-                                        Text(
-                                            if (category.strCategoryDescription.length >= 70) category.strCategoryDescription.substring(
-                                                0,
-                                                70
-                                            ) + " .........." else category.strCategoryDescription,
-                                            style = Constants.Texts.HOME_RECIPE_SUB_TEXT
-                                        )
-                                    }
+                            items(1){
 
-                                    Icon(Icons.Default.KeyboardArrowRight, "")
-
-                                }
-
-                                HorizontalDivider(
-                                    thickness = 3.dp,
-                                    color = Color.Black,
-                                    modifier = Modifier.padding(top = 5.dp)
-                                )
                             }
+
+                            items(homePageViewModel.categoriesResponse){category ->
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(5.dp)
+                                ) {
+                                    Column {
+                                        Row(verticalAlignment = Alignment.CenterVertically) {
+
+                                            Box(Modifier.weight(0.2f)) {
+                                                GlideImage(
+                                                    model = category.strCategoryThumb,
+                                                    contentDescription = "",
+                                                    loading = placeholder(
+                                                        R.drawable.ic_launcher_background
+                                                    ),
+                                                    modifier = Modifier.align(Alignment.Center)
+                                                )
+                                            }
+
+                                            Column(Modifier.weight(0.8f)) {
+                                                Text(
+                                                    category.strCategory,
+                                                    style = Constants.Texts.TITLE_TEXT
+                                                )
+
+                                                Text(
+                                                    if (category.strCategoryDescription.length >= 70) category.strCategoryDescription.substring(
+                                                        0,
+                                                        70
+                                                    ) + " .........." else category.strCategoryDescription,
+                                                    style = Constants.Texts.HOME_RECIPE_SUB_TEXT
+                                                )
+                                            }
+
+                                            Icon(Icons.Default.KeyboardArrowRight, "")
+
+                                        }
+
+                                        HorizontalDivider(
+                                            thickness = 3.dp,
+                                            color = Color.Black,
+                                            modifier = Modifier.padding(top = 5.dp)
+                                        )
+                                    }
+                                }
+                            }
+
+
+
+
                         }
+
                     }
-
-
 
 
                 }
 
             }
-
+            FloatingActionButton(onClick = {
+                navController.navigate("addRecipe")
+            },Modifier.align(Alignment.BottomEnd).padding(10.dp)) { Icon(Icons.Default.Add,"") }
 
         }
+
     }
+
 
 
 }

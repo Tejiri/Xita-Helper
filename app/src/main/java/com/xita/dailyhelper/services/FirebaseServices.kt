@@ -1,5 +1,6 @@
 package com.xita.dailyhelper.services
 
+import android.net.Uri
 import android.util.Log
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -7,11 +8,28 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
+import com.google.firebase.storage.storage
 
 class FirebaseServices {
 
     private val auth: FirebaseAuth = Firebase.auth
     private val db: FirebaseFirestore = Firebase.firestore
+    private val storage = Firebase.storage
+
+    fun addRecipe(uri: Uri?){
+        if (uri != null) {
+            storage.reference.child("images/image.jpg").putFile(uri).addOnCompleteListener {result->
+                if (result.isSuccessful){
+    //                result.result.
+                }else{
+                    Log.i("MYINFO",result.exception?.message.toString())
+                }
+
+            }
+        }
+
+
+    }
 
     fun checkUserLoggedIn(): FirebaseUser? {
         return auth.currentUser
@@ -45,9 +63,6 @@ class FirebaseServices {
             } else {
 
                 onResult(false, task.exception?.message.toString())
-//                error = true
-//                errorMessage = task.exception?.message.toString()
-//                updateUI(null)
             }
         }
 

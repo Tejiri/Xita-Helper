@@ -45,12 +45,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.xita.dailyhelper.constants.Constants
+import com.xita.dailyhelper.pages.AddRecipePage
 import com.xita.dailyhelper.pages.HomePage
 import com.xita.dailyhelper.pages.LoginPage
 import com.xita.dailyhelper.pages.SignUpPage
@@ -82,46 +84,14 @@ class MainActivity : ComponentActivity() {
 fun NavigationGraphWithConditionalUI(navController: NavHostController) {
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
 Log.i("MYINFO - Current route", currentRoute.toString())
-    if (currentRoute == "home") {
-        AppWithAppBarAndDrawer(navController)
-    } else {
-        Log.i("MYINFO - Current route","Entered here")
+//    if (currentRoute == "home") {
+////        AppWithAppBarAndDrawer(navController)
+//    } else {
+//        Log.i("MYINFO - Current route","Entered here")
         AppWithoutAppBarAndDrawer(navController)
-    }
+//    }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun AppWithAppBarAndDrawer(navController: NavHostController) {
-    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
-
-    ModalNavigationDrawer(
-        drawerState = drawerState,
-        drawerContent = {
-            ModalDrawerSheet {
-                DrawerContent(navController)
-            }
-        }
-    ) {
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = { Text("COOKBOOK", style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 25.sp)) },
-                    navigationIcon = {
-                        IconButton(onClick = { scope.launch { drawerState.open() } }) {
-                            Icon(Icons.Default.Menu, contentDescription = "Menu Icon")
-                        }
-                    },
-                    colors = TopAppBarDefaults.topAppBarColors(containerColor = Purple80)
-                )
-            },
-            modifier = Modifier.fillMaxSize()
-        ) { innerPadding ->
-            HomePage(navController, innerPadding)
-        }
-    }
-}
 
 @Composable
 fun AppWithoutAppBarAndDrawer(navController: NavHostController) {
@@ -141,13 +111,14 @@ fun NavigationGraph(navController: NavHostController, innerPaddingValues: Paddin
     ) {
         composable("home") { HomePage(navController, innerPaddingValues) }
         composable("login") { LoginPage(navController, innerPaddingValues) }
-        composable("signup") { SignUpPage(navController, innerPaddingValues) }
+        composable("signUp") { SignUpPage(navController, innerPaddingValues) }
+        composable("addRecipe") { AddRecipePage(navController, innerPaddingValues) }
     }
 }
 
 
 @Composable
-fun DrawerContent(navController: NavHostController) {
+fun DrawerContent(navController: NavController) {
     Box(
         Modifier
             .fillMaxSize()
