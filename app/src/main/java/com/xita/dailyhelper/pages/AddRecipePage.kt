@@ -2,6 +2,7 @@ package com.xita.dailyhelper.pages
 
 import android.net.Uri
 import android.util.Log
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -36,6 +37,12 @@ import com.xita.dailyhelper.services.FirebaseServices
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun AddRecipePage(navController: NavHostController, innerPaddingValues: PaddingValues) {
+
+
+    BackHandler {
+
+    }
+
   FixedPages().PageWithAppBarAndDrawer(navController) {
       var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
       val pickMedia =
@@ -68,6 +75,7 @@ fun AddRecipePage(navController: NavHostController, innerPaddingValues: PaddingV
 
   }
 }
+
 //}
 //             Button(onClick = {
 //              // Registers a photo picker activity launcher in single-select mode.
