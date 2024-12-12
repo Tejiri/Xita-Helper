@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -60,17 +61,18 @@ fun AddRecipePage(navController: NavHostController, innerPaddingValues: PaddingV
 
       Column(Modifier.fillMaxSize().background(Color.Gray)) {
 
-
-          Box(Modifier.fillMaxSize()) {
+          Box(Modifier.weight(0.3f)) {
               GlideImage(
                   selectedImageUri,
                   "",
                   loading = placeholder(R.drawable.ic_launcher_background),
                   contentScale = ContentScale.FillBounds,
-                  modifier = Modifier.fillMaxWidth()
+                  modifier = Modifier.fillMaxWidth().height(300.dp).background(Color.Red)
               )
 //
           }
+
+          Box(Modifier.weight(0.7f)) {  }
       }
 
   }
