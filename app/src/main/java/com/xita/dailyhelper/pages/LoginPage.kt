@@ -56,14 +56,14 @@ fun LoginPage(
                 Text("Login", style = Constants.Texts.TITLE_TEXT)
             }
             items(1) {
-                CustomFormComposables().customTextfield(
+                CustomFormComposables().CustomTextField(
                     onValueChange = { newEmail -> loginPageViewModel.onEmailChange(newEmail) },
                     placeHolder = { Text("Email") },
                     value = loginPageViewModel.email
 
                 )
 
-                CustomFormComposables().customTextfield(
+                CustomFormComposables().CustomTextField(
                     obscureText = true,
                     onValueChange = { newPassword -> loginPageViewModel.onPasswordChange(newPassword) },
                     placeHolder = { Text("Password") },
@@ -71,14 +71,14 @@ fun LoginPage(
 
                 )
 
-                CustomFormComposables().customButton(text = "Login", onClick = {
+                CustomFormComposables().CustomButton(text = "Login", onClick = {
 
                     loginPageViewModel.logUserIn()
 
 
                 }, isLoading = loginPageViewModel.isLoading)
 
-                CustomFormComposables().customButton(
+                CustomFormComposables().CustomButton(
                     text = "Register",
                     transparent = true,
                     onClick = {

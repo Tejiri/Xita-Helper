@@ -103,21 +103,21 @@ fun SignUpPage(
 
             items(1) {
 
-                CustomFormComposables().customTextfield(
+                CustomFormComposables().CustomTextField(
                     value = signUpPageViewModel.name,
                     onValueChange = { name -> signUpPageViewModel.onNameChange(name) },
                     placeHolder = { Text("Name") })
-                CustomFormComposables().customTextfield(
+                CustomFormComposables().CustomTextField(
                     value = signUpPageViewModel.email,
                     onValueChange = { email -> signUpPageViewModel.onEmailChange(email) },
                     placeHolder = { Text("Email") })
-                CustomFormComposables().customTextfield(
+                CustomFormComposables().CustomTextField(
                     value = signUpPageViewModel.password,
                     onValueChange = { password -> signUpPageViewModel.onPasswordChange(password) },
                     placeHolder = { Text("Password") },
                     obscureText = true
                 )
-                CustomFormComposables().customTextfield(
+                CustomFormComposables().CustomTextField(
                     value = signUpPageViewModel.repeatPassword,
                     onValueChange = { repeatPassword ->
                         signUpPageViewModel.onRepeatPasswordChange(
@@ -131,7 +131,7 @@ fun SignUpPage(
 
             item {
 
-                CustomFormComposables().customButton(
+                CustomFormComposables().CustomButton(
                     text = "Sign Up",
                     onClick = { signUpPageViewModel.submitForm()
 //                              navController.navigate("home")

@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,6 +33,7 @@ import androidx.navigation.compose.rememberNavController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.bumptech.glide.integration.compose.placeholder
+import com.example.learn.customComponents.CustomFormComposables
 import com.example.learn.customComponents.FixedPages
 import com.xita.dailyhelper.R
 import com.xita.dailyhelper.services.FirebaseServices
@@ -44,38 +47,64 @@ fun AddRecipePage(navController: NavHostController, innerPaddingValues: PaddingV
 
     }
 
-  FixedPages().PageWithAppBarAndDrawer(navController) {
-      var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
-      val pickMedia =
-          rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+    FixedPages().PageWithAppBarAndDrawer(navController) {
+        var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
+        val pickMedia =
+            rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
 
-              // Callback is invoked after the user selects a media item or closes the
-              // photo picker.
-              if (uri != null) {
-                  selectedImageUri = uri
-                  Log.d("PhotoPicker", "Selected URI: $uri")
-              } else {
-                  Log.d("PhotoPicker", "No media selected")
-              }
-          }
+                // Callback is invoked after the user selects a media item or closes the
+                // photo picker.
+                if (uri != null) {
+                    selectedImageUri = uri
+                    Log.d("PhotoPicker", "Selected URI: $uri")
+                } else {
+                    Log.d("PhotoPicker", "No media selected")
+                }
+            }
 
-      Column(Modifier.fillMaxSize().background(Color.Gray)) {
+        Column(
+            Modifier
+                .fillMaxSize()
 
-          Box(Modifier.weight(0.3f)) {
-              GlideImage(
-                  selectedImageUri,
-                  "",
-                  loading = placeholder(R.drawable.ic_launcher_background),
-                  contentScale = ContentScale.FillBounds,
-                  modifier = Modifier.fillMaxWidth().height(300.dp).background(Color.Red)
-              )
+        ) {
+
+            Box(Modifier.weight(0.3f)) {
+                GlideImage(
+                    selectedImageUri,
+                    "",
+                    loading = placeholder(R.drawable.ic_launcher_background),
+                    contentScale = ContentScale.FillBounds,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(300.dp)
+                        .background(Color.Red)
+                )
 //
-          }
+            }
 
-          Box(Modifier.weight(0.7f)) {  }
-      }
+            Box(Modifier.weight(0.7f)) {
+//                CustomFormComposables().customTextfield(
+//                    onValueChange = {},
+//                    placeHolder = { Text("") },
+//                    value = "",
+//                    obscureText = false
+//                )
+                LazyColumn(Modifier.padding(horizontal = 10.dp)) {
+                    item {
+                        CustomFormComposables().CustomTextField(
+                            onValueChange = {},
+                            placeHolder = { Text("Recipe name") },
+                            value = "",
+                            obscureText = false
+                        )
 
-  }
+                        CustomFormComposables().CustomButton(text = "Create Recipe", onClick = {})
+                    }
+                }
+            }
+        }
+
+    }
 }
 
 //}

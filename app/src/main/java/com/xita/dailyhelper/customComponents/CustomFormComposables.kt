@@ -26,7 +26,7 @@ import com.xita.dailyhelper.ui.theme.Purple40
 class CustomFormComposables {
 
     @Composable
-    fun customTextfield(
+    fun CustomTextField(
         onValueChange: (value: String) -> Unit,
         placeHolder: @Composable () -> Unit,
         value: String,
@@ -46,11 +46,10 @@ class CustomFormComposables {
     }
 
     @Composable
-    fun customButton(
+    fun CustomButton(
         text: String = "",
         onClick: () -> Unit = {},
         isLoading: Boolean = false,
-        obscureText: Boolean = false,
         transparent:Boolean = false
     ) {
         Box(
