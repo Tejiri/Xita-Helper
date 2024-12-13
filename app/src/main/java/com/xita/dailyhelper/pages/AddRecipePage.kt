@@ -38,6 +38,8 @@ import com.example.learn.customComponents.FixedPages
 import com.xita.dailyhelper.R
 import com.xita.dailyhelper.services.FirebaseServices
 
+
+//Add Recipe page
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun AddRecipePage(navController: NavHostController, innerPaddingValues: PaddingValues) {
