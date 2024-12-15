@@ -40,6 +40,7 @@ import com.bumptech.glide.integration.compose.placeholder
 import com.example.learn.customComponents.CustomFormComposables
 import com.example.learn.customComponents.FixedPages
 import com.xita.dailyhelper.R
+import com.xita.dailyhelper.constants.DrawerItem
 import com.xita.dailyhelper.services.FirebaseServices
 
 
@@ -53,7 +54,7 @@ fun AddRecipePage(navController: NavHostController, innerPaddingValues: PaddingV
 
     }
 
-    FixedPages().PageWithAppBarAndDrawer(navController) {
+    FixedPages().PageWithAppBarAndDrawer(navController,DrawerItem.NON_SELECTED) {
         var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
         val pickMedia =
             rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->

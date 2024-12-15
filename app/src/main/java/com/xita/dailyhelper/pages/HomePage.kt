@@ -47,6 +47,7 @@ import com.bumptech.glide.integration.compose.placeholder
 import com.example.learn.customComponents.FixedPages
 import com.xita.dailyhelper.R
 import com.xita.dailyhelper.constants.Constants
+import com.xita.dailyhelper.constants.DrawerItem
 import com.xita.dailyhelper.models.Category
 import com.xita.dailyhelper.ui.theme.Purple80
 
@@ -63,7 +64,7 @@ fun HomePage(
 ) {
 
 
-    FixedPages().PageWithAppBarAndDrawer(navController) {
+    FixedPages().PageWithAppBarAndDrawer(navController,DrawerItem.NON_SELECTED) {
         var searchText by remember { mutableStateOf("") }
 
         Box( ) {

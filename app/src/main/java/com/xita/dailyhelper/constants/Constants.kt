@@ -13,4 +13,7 @@ class Constants {
         val HOME_RECIPE_SUB_TEXT = TextStyle(fontSize = 17.sp, fontWeight = FontWeight.Bold, color = Color.Gray)
         val DRAWER_ITEM_TEXT = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold)
     }
+
+
 }
+
