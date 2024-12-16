@@ -54,7 +54,7 @@ import com.xita.dailyhelper.ui.theme.Purple80
 import com.xita.dailyhelper.ui.theme.SearchBoxGrey
 import com.xita.dailyhelper.viewModels.HomePageViewModel
 
-
+//Homepage Composable
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun HomePage(
