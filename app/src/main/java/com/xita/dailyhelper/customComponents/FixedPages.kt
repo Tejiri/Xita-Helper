@@ -52,6 +52,8 @@ import com.xita.dailyhelper.services.FirebaseServices
 import com.xita.dailyhelper.ui.theme.Purple80
 import kotlinx.coroutines.launch
 
+
+//Fixed pages
 class FixedPages {
 
     @Composable
